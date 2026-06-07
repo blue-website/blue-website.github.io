@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BLUE</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue-b: #0a4eb4;
+      --blue-l: #1970d2;
+      --blue-u: #3796e6;
+      --blue-e: #5fb9f5;
+      --text: #222;
+      --muted: #666;
+      --link-bg: #2d2d2d;
+      --link-blue: #4db8ff;
+      --border: #e6e6e6;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(77, 184, 255, 0.11), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #f9fcff 48%, #ffffff 100%);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 42px auto 36px;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .main-title {
+      max-width: 1120px;
+      margin: 0 auto 24px;
+      display: block;
+      font-size: clamp(34px, 3.2vw, 44px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      text-align: center;
+      color: #111;
+    }
+
+    .main-title-text {
+      display: block;
+      max-width: 1080px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .title-line {
+      display: block;
+    }
+
+    .title-line:first-child {
+      white-space: nowrap;
+    }
+
+    .blue-word {
+      background: linear-gradient(90deg, var(--blue-b), var(--blue-l), var(--blue-u), var(--blue-e));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 900;
+    }
+
+    .letter-b {
+      color: var(--blue-b);
+    }
+
+    .letter-l {
+      color: var(--blue-l);
+    }
+
+    .letter-u {
+      color: var(--blue-u);
+    }
+
+    .letter-e {
+      color: var(--blue-e);
+    }
+
+    .authors {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px auto 0;
+      color: #333;
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .authors a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: none;
+    }
+
+    .authors a:hover {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .author-note {
+      margin: 4px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 22px auto 0;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: var(--link-bg);
+      color: var(--link-blue);
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 1;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .link-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .link-btn.disabled {
+      cursor: default;
+      opacity: 0.72;
+    }
+
+    .link-btn.disabled:hover {
+      opacity: 0.72;
+      transform: none;
+    }
+
+    .link-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--link-blue);
+      flex-shrink: 0;
+    }
+
+    .release-note {
+      width: 100%;
+      margin: 18px auto 0;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #111;
+    }
+
+    .container {
+      max-width: 910px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .figure {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .figure.wide {
+      max-width: 1120px;
+    }
+
+    .figure img {
+      width: 90%;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(10, 78, 180, 0.08);
+    }
+
+    .figure.medium img {
+      width: 75%;
+    }
+
+    .figure.wide img {
+      width: 94%;
+    }
+
+    .figure.framework img {
+      width: 84%;
+    }
+
+    .figure.result img {
+      width: 86%;
+    }
+
+    .figure.result.primary img {
+      width: 78%;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 50px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .caption {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0 auto;
+      text-align: justify;
+    }
+
+    .caption.center {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    hr {
+      margin: 40px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+
+    .video-section {
+      max-width: 1400px;
+      margin: 50px auto 0;
+      padding: 0 40px;
+    }
+
+    .video-section h2 {
+      margin-top: 0;
+    }
+
+    .video-subsection {
+      margin-top: 36px;
+    }
+
+    .video-subsection h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      text-align: center;
+      color: #111;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 24px;
+    }
+
+    .video-card {
+      text-align: left;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 34px;
+      margin-top: 24px;
+    }
+
+    .comparison-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 8px 24px rgba(10, 78, 180, 0.06);
+    }
+
+    .comparison-card h4 {
+      margin: 0 0 14px;
+      text-align: center;
+      font-size: 17px;
+      color: #222;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .video-card video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      background: #000;
+    }
+
+    .video-title {
+      margin-top: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+    }
+
+    .visit-footer {
+      max-width: 900px;
+      margin: 72px auto 36px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .visit-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 28px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 10px 30px rgba(10, 78, 180, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .visit-meta {
+      text-align: center;
+    }
+
+    .visit-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .visit-count {
+      margin-top: 2px;
+      color: #111;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .visit-badge {
+      display: block;
+      max-width: min(260px, 58vw);
+      height: auto;
+      margin: 6px auto 0;
+    }
+
+    @media (max-width: 700px) {
+      .main-title {
+        font-size: 34px;
+      }
+
+      .title-line:first-child {
+        white-space: normal;
+      }
+
+      .release-note {
+        font-size: 18px;
+      }
+
+      .video-section {
+        padding: 0 20px;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-row {
+        grid-template-columns: 1fr;
+      }
+
+      .figure img,
+      .figure.medium img,
+      .figure.wide img,
+      .figure.framework img,
+      .figure.result.primary img,
+      .figure.result img {
+        width: 100%;
+      }
+
+      .visit-card {
+        border-radius: 18px;
+        align-items: flex-start;
+      }
+
+      .visit-count {
+        font-size: 24px;
+      }
+
+      .visit-badge {
+        max-width: min(230px, 62vw);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hero-container">
+    <h1 class="main-title">
+      <span class="main-title-text">
+        <span class="title-line"><span class="blue-word">BLUE</span>: Toward <span class="letter-b">B</span>etter <span class="letter-l">L</span>anguage <span class="letter-u">U</span>se in <span class="letter-e">E</span>fficient</span>
+        <span class="title-line">Vision-Language-Action Models for Autonomous Driving</span>
+      </span>
+    </h1>
+
+    <div class="authors" aria-label="Authors">
+      <span>George Ling</span>
+      <span>,</span>
+      <span>Lijin Yang</span>
+      <span>,</span>
+      <span>Hao Yang</span>
+      <span>,</span>
+      <a href="https://dedekinds.github.io/" target="_blank" rel="noopener">Zhongzhan Huang</a><sup>*</sup>
+    </div>
+    <p class="author-note">* Corresponding author</p>
+
+    <div class="links">
+      <a class="link-btn" href="https://github.com/George-Ling3/BLUE" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm0 2h7v5h5v11H6V4zm2 8v2h8v-2H8zm0 4v2h5v-2H8z"/>
+        </svg>
+        Paper
+      </a>
+
+      <a class="link-btn" href="https://github.com/George-Ling3/BLUE" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.851.004 1.707.115 2.506.337 1.91-1.294 2.748-1.025 2.748-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.936.359.309.679.919.679 1.852 0 1.337-.012 2.417-.012 2.747 0 .268.18.579.688.481A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10z"/>
+        </svg>
+        Code
+      </a>
+
+      <a class="link-btn" href="https://huggingface.co/George-Ling/blue_gate/tree/main/evaluation_logs" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm-7 9c-1.1 0-2 .9-2 2v1c0 2.76 3.58 5 9 5s9-2.24 9-5v-1c0-1.1-.9-2-2-2H5zm0 2h14v1c0 1.38-2.91 3-7 3s-7-1.62-7-3v-1z"/>
+        </svg>
+        Checkpoint
+      </a>
+
+      <a class="link-btn" href="https://huggingface.co/datasets/George-Ling/blue_data" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2zm6 12c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23C7.61 15.57 9.72 16 12 16s4.39-.43 6-1.23V17zm0-4c0 .5-2.13 2-6 2s-6-1.5-6-2v-2.23C7.61 11.57 9.72 12 12 12s4.39-.43 6-1.23V13z"/>
+        </svg>
+        Data
+      </a>
+
+      <a class="link-btn" href="https://huggingface.co/George-Ling/blue_gate" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-6l-2 2-2-2H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v12h5.83L12 18.17 13.17 17H19V5H5zm3 2h8v2H8V7zm0 4h8v2H8v-2z"/>
+        </svg>
+        Logs
+      </a>
+    </div>
+
+    <p class="release-note">Code, data, logs, and checkpoints will be fully released.</p>
+  </div>
+
+  <div class="video-section">
+    <h2>Closed-loop Demonstrations</h2>
+    <p class="caption center">
+      Example closed-loop runs in CARLA: BLUE demonstrations and comparisons against the SimLingo backbone.
+    </p>
+
+    <div class="video-subsection">
+      <h3>Ours Demonstrations</h3>
+      <p class="caption center">Representative closed-loop runs completed by BLUE.</p>
+      <div class="video-grid">
+        <div class="video-card">
+          <video src="video/blue/route_11_chase_topdown_info.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
+          <div class="video-title">Unsignalized left turn</div>
+        </div>
+
+        <div class="video-card">
+          <video src="video/blue/route_74_chase_topdown_info.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
+          <div class="video-title">Sudden door opening on a two-way road</div>
+        </div>
+
+        <div class="video-card">
+          <video src="video/blue/route_127_chase_topdown_info.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
+          <div class="video-title">Construction obstacle on a two-way road</div>
+        </div>
+
+        <div class="video-card">
+          <video src="video/blue/route_151_chase_topdown_info.mp4" autoplay loop muted playsinline controls preload="metadata"></video>
+          <div class="video-title">Pedestrian crossing outside a crosswalk</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-subsection">
+      <h3>Backbone vs. Ours</h3>
+      <p class="caption center">BLUE improves driving success rate while reducing inference latency.</p>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h4>Turning at a blocked intersection</h4>
+          <div class="compare-row">
+            <div class="video-card">
+              <video src="video/simlingo/route_200_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
+              <div class="video-title">Backbone · SimLingo</div>
+            </div>
+            <div class="video-card">
+              <video src="video/blue/route_200_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
+              <div class="video-title">Ours · BLUE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-card">
+          <h4>Turning with pedestrian</h4>
+          <div class="compare-row">
+            <div class="video-card">
+              <video src="video/simlingo/route_91_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
+              <div class="video-title">Backbone · SimLingo</div>
+            </div>
+            <div class="video-card">
+              <video src="video/blue/route_91_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
+              <div class="video-title">Ours · BLUE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-card">
+          <h4>Left turn into congested unsignalized junction</h4>
+          <div class="compare-row">
+            <div class="video-card">
+              <video src="video/simlingo/route_215_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
+              <div class="video-title">Backbone · SimLingo</div>
+            </div>
+            <div class="video-card">
+              <video src="video/blue/route_215_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
+              <div class="video-title">Ours · BLUE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="abstract">
+    <h2>Abstract</h2>
+    <p class="caption">
+      We present BLUE, a minimal method for better language use in vision-language-action (VLA) models for autonomous driving (AD). Through extensive analysis, we reveal that language matters on only a small fraction of routes, but on those routes it can greatly improve or degrade performance. Generating language at every frame is therefore inefficient, since most computation is spent on frames that do not benefit from language. We further show that pretrained VLA hidden states potentially already encode whether language will benefit a given frame, even though scene complexity and kinematic features alone struggle to predict this. Based on this finding, BLUE trains a lightweight gate on frozen VLA hidden states to decide per frame whether to activate language generation or predict actions directly, without modifying the backbone or requiring additional human annotation. With just a 0.11M-parameter gate, BLUE sets a new state of the art on both benchmarks, achieving 76.2% success rate on Bench2Drive and 36 driving score on Longest6 v2, while delivering 2.54× inference speedup and 8.9% success rate improvement over the backbone. BLUE provides a practical path toward efficient language-augmented AD, showing that VLA models can retain the benefits of language at a fraction of the cost.
+    </p>
+  </div>
+
+  <div class="figure wide framework">
+    <h2>Framework</h2>
+    <img src="figure/framework.png" alt="BLUE Framework">
+    <p class="caption">
+      Overview of BLUE. A lightweight gate receives the hidden state from the frozen VLA backbone and decides per frame whether to activate language generation or directly output waypoints. Labels are derived from routine driving evaluation, while the visual encoder and LLM backbone remain frozen and only a lightweight MLP gate is trainable.
+    </p>
+  </div>
+
+  <div class="figure wide result primary">
+    <h2>Results on Bench2Drive</h2>
+    <img src="figure/exp_result1.png" alt="BLUE Bench2Drive experimental results">
+    <p class="caption">
+      BLUE achieves the highest closed-loop success rate (SR) and driving score (DS), with large margins over its SimLingo backbone. T-Param. reports trainable parameters; BLUE trains only a 0.11M gate while keeping the VLA backbone frozen. Notably, BLUE surpasses methods that employ multi-camera setups, LiDAR, or dense auxiliary labels, using only a front-view camera with language annotations.
+    </p>
+  </div>
+
+  <div class="figure wide result">
+    <h2>Multi-ability results on Bench2Drive</h2>
+    <img src="figure/exp_result2.png" alt="BLUE multi-ability results on Bench2Drive">
+    <p class="caption">
+      Mean denotes the average success rate over the five driving skills. While using only a single front-view camera and no LiDAR, BLUE achieves the second-best mean result and remains close to the best method, which uses six cameras.
+    </p>
+  </div>
+
+  <div class="figure wide result">
+    <h2>Closed-loop results on Longest6 v2 &amp; Inference efficiency comparison</h2>
+    <img src="figure/exp_result3.png" alt="BLUE closed-loop results on Longest6 v2 and inference efficiency comparison">
+    <p class="caption">
+      Left: closed-loop results on Longest6 v2. DS: driving score, RC: route completion, IS: infraction score. Time: total A100 GPU hours to evaluate all routes. Right: inference efficiency comparison among representative driving models. Higher speed ratio and FPS are better, while lower latency is better.
+    </p>
+  </div>
+
+  <footer class="visit-footer" aria-label="Visit statistics">
+    <div class="visit-card">
+      <div class="visit-meta">
+        <div class="visit-label">Total visits</div>
+        <div class="visit-count" aria-live="polite">
+          <img
+            class="visit-badge"
+            src="https://count.getloli.com/get/@blue-vla-project-page?theme=gelbooru"
+            alt="Total visit counter"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            onerror="this.onerror=null; this.src='https://profile-counter.glitch.me/blue-vla-project-page/count.svg';"
+          >
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const safelyPlay = (video) => {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => {});
+        }
+      };
+
+      document.querySelectorAll('.compare-row').forEach((row) => {
+        const videos = Array.from(row.querySelectorAll('video'));
+        if (videos.length < 2) {
+          return;
+        }
+
+        const endedVideos = new Set();
+        let restarting = false;
+
+        const restartTogether = () => {
+          restarting = true;
+          endedVideos.clear();
+          videos.forEach((video) => {
+            video.pause();
+            video.currentTime = 0;
+          });
+
+          requestAnimationFrame(() => {
+            videos.forEach(safelyPlay);
+            restarting = false;
+          });
+        };
+
+        const startTogether = () => {
+          videos.forEach((video) => {
+            video.loop = false;
+            video.currentTime = 0;
+          });
+          videos.forEach(safelyPlay);
+        };
+
+        videos.forEach((video, index) => {
+          video.loop = false;
+          video.addEventListener('ended', () => {
+            if (restarting) {
+              return;
+            }
+            endedVideos.add(index);
+            if (endedVideos.size === videos.length) {
+              restartTogether();
+            }
+          });
+        });
+
+        Promise.all(videos.map((video) => new Promise((resolve) => {
+          if (video.readyState >= 1) {
+            resolve();
+          } else {
+            video.addEventListener('loadedmetadata', resolve, { once: true });
+          }
+        }))).then(startTogether);
+      });
+    }());
+
+  </script>
+</body>
+</html>
