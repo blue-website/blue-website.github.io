@@ -15,55 +15,85 @@
       --blue-l: #1970d2;
       --blue-u: #3796e6;
       --blue-e: #5fb9f5;
-      --text: #222;
-      --muted: #666;
-      --link-bg: #2d2d2d;
-      --link-blue: #4db8ff;
-      --border: #e6e6e6;
+      --ink: #111827;
+      --text: #253041;
+      --muted: #64748b;
+      --surface: rgba(255, 255, 255, 0.9);
+      --soft: #f5f9fd;
+      --line: #dce7f1;
+      --link-bg: #172033;
+      --link-blue: #72c7ff;
+      --border: #e1e8f0;
+      --teal: #159a92;
+      --warm: #d99a2b;
+      --shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(77, 184, 255, 0.11), transparent 34%),
-        linear-gradient(180deg, #ffffff 0%, #f9fcff 48%, #ffffff 100%);
+        linear-gradient(90deg, rgba(10, 78, 180, 0.04) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, #f7fbff 0%, #ffffff 36%, #f6fbff 78%, #ffffff 100%);
+      background-size: 84px 84px, auto;
       color: var(--text);
       margin: 0;
       padding: 0;
     }
 
     .hero-container {
-      max-width: 1200px;
-      margin: 42px auto 36px;
-      padding: 0 24px;
+      max-width: 1220px;
+      margin: 0 auto 48px;
+      padding: 54px 24px 0;
       text-align: center;
     }
 
     .main-title {
-      max-width: 1120px;
+      max-width: 1160px;
       margin: 0 auto 24px;
       display: block;
-      font-size: clamp(34px, 3.2vw, 44px);
+      font-size: 44px;
       font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
+      line-height: 1.1;
+      letter-spacing: 0;
       text-align: center;
-      color: #111;
+      color: var(--ink);
     }
 
     .main-title-text {
-      display: block;
-      max-width: 1080px;
+      display: grid;
+      justify-items: center;
+      gap: 6px;
+      width: 100%;
+      max-width: 1060px;
+      min-width: 0;
       margin: 0 auto;
       text-align: center;
     }
 
     .title-line {
       display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 0 auto;
+      text-align: center;
+      text-wrap: balance;
+      overflow-wrap: break-word;
     }
 
-    .title-line:first-child {
-      white-space: nowrap;
+    .title-line.statement {
+      max-width: 1120px;
+      color: var(--ink);
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.16;
+    }
+
+    .title-line.scope {
+      max-width: 1040px;
+      color: #263244;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.18;
     }
 
     .blue-word {
@@ -91,16 +121,27 @@
     }
 
     .authors {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 16px auto 0;
-      color: #333;
-      font-size: 19px;
+      display: block;
+      max-width: 980px;
+      margin: 18px auto 0;
+      color: #263244;
+      font-size: 18px;
       font-weight: 600;
       line-height: 1.45;
+      text-align: center;
+    }
+
+    .authors span,
+    .authors a {
+      white-space: nowrap;
+    }
+
+    .authors sup {
+      margin-left: 3px;
+      color: var(--blue-l);
+      font-size: 0.7em;
+      font-weight: 800;
+      line-height: 1;
     }
 
     .authors a {
@@ -110,14 +151,41 @@
     }
 
     .authors a:hover {
-      color: inherit;
+      color: var(--blue-l);
       text-decoration: underline;
     }
 
+    .affiliation {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin: 14px auto 0;
+      padding: 8px 15px;
+      color: #1d2a3a;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      border: 1px solid rgba(10, 78, 180, 0.16);
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .affiliation::before {
+      content: "";
+      width: 22px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue-b), var(--blue-u), var(--teal));
+      box-shadow: 0 0 0 4px rgba(0, 86, 145, 0.08);
+    }
+
     .author-note {
-      margin: 4px auto 0;
+      margin: 7px auto 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.4;
       text-align: center;
     }
@@ -126,9 +194,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin: 22px auto 0;
+      max-width: 760px;
+      margin: 26px auto 0;
     }
 
     .link-btn {
@@ -136,21 +205,25 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 24px;
+      min-width: 112px;
+      padding: 11px 18px;
       background: var(--link-bg);
       color: var(--link-blue);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 999px;
-      font-size: 16px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      font-size: 15px;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
       opacity: 1;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
     .link-btn:hover {
-      opacity: 0.85;
-      transform: translateY(-1px);
+      opacity: 0.94;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.16);
     }
 
     .link-btn.disabled {
@@ -171,25 +244,76 @@
     }
 
     .release-note {
-      width: 100%;
-      margin: 18px auto 0;
+      display: block;
+      width: fit-content;
+      max-width: min(720px, 100%);
+      margin: 22px auto 0;
+      padding: 9px 14px;
       text-align: center;
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 600;
       line-height: 1.4;
-      color: #111;
+      color: #263244;
+      border: 1px solid rgba(10, 78, 180, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      gap: 12px;
+      max-width: 900px;
+      margin: 26px auto 0;
+    }
+
+    .stat-item {
+      position: relative;
+      overflow: hidden;
+      padding: 15px 14px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .stat-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-l), var(--teal));
+    }
+
+    .stat-value {
+      display: block;
+      color: var(--ink);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
     }
 
     .container {
-      max-width: 910px;
-      margin: 60px auto;
-      padding: 0 20px;
+      max-width: 940px;
+      margin: 76px auto;
+      padding: 0 24px;
     }
 
     .figure {
       max-width: 900px;
-      margin: 50px auto;
-      padding: 0 20px;
+      margin: 72px auto;
+      padding: 0 24px;
       text-align: center;
     }
 
@@ -203,9 +327,9 @@
       display: block;
       margin: 0 auto 18px;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 8px;
       background: #fff;
-      box-shadow: 0 10px 30px rgba(10, 78, 180, 0.08);
+      box-shadow: var(--shadow);
     }
 
     .figure.medium img {
@@ -229,15 +353,28 @@
     }
 
     h2 {
-      font-size: 24px;
+      position: relative;
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1.2;
       margin-top: 50px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       text-align: center;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 3px;
+      margin: 12px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue-l), var(--teal), var(--warm));
     }
 
     .caption {
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.72;
       margin: 0 auto;
       text-align: justify;
     }
@@ -247,6 +384,17 @@
       color: var(--muted);
       font-size: 14px;
       margin-bottom: 4px;
+      max-width: 780px;
+    }
+
+    #abstract .caption {
+      color: #2f3b4c;
+      font-size: 17px;
+    }
+
+    .figure .caption {
+      max-width: 960px;
+      color: #344256;
     }
 
     hr {
@@ -256,9 +404,12 @@
     }
 
     .video-section {
-      max-width: 1400px;
-      margin: 50px auto 0;
-      padding: 0 40px;
+      max-width: none;
+      margin: 66px auto 0;
+      padding: 58px 40px 62px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(245, 249, 253, 0.76);
     }
 
     .video-section h2 {
@@ -266,21 +417,24 @@
     }
 
     .video-subsection {
-      margin-top: 36px;
+      max-width: 1320px;
+      margin: 42px auto 0;
     }
 
     .video-subsection h3 {
-      margin: 0 0 8px;
-      font-size: 20px;
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.25;
       text-align: center;
-      color: #111;
+      color: var(--ink);
     }
 
     .video-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      margin-top: 24px;
+      gap: 26px;
+      max-width: 1180px;
+      margin: 26px auto 0;
     }
 
     .video-card {
@@ -290,23 +444,24 @@
     .comparison-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 34px;
-      margin-top: 24px;
+      gap: 26px;
+      max-width: 1180px;
+      margin: 26px auto 0;
     }
 
     .comparison-card {
       padding: 18px;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.72);
-      box-shadow: 0 8px 24px rgba(10, 78, 180, 0.06);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
     }
 
     .comparison-card h4 {
       margin: 0 0 14px;
       text-align: center;
       font-size: 17px;
-      color: #222;
+      color: #263244;
     }
 
     .compare-row {
@@ -319,9 +474,9 @@
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid var(--border);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.1);
       background: #000;
     }
 
@@ -329,7 +484,7 @@
       margin-top: 8px;
       font-size: 15px;
       font-weight: 600;
-      color: #333;
+      color: #334155;
       text-align: center;
     }
 
@@ -347,8 +502,8 @@
       padding: 16px 28px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.82);
-      box-shadow: 0 10px 30px rgba(10, 78, 180, 0.08);
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(8px);
     }
 
@@ -360,7 +515,7 @@
       color: var(--muted);
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0;
       line-height: 1.2;
       text-transform: uppercase;
     }
@@ -371,7 +526,7 @@
       font-size: 28px;
       font-weight: 800;
       line-height: 1.1;
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
       font-variant-numeric: tabular-nums;
     }
 
@@ -382,21 +537,68 @@
       margin: 6px auto 0;
     }
 
-    @media (max-width: 700px) {
-      .main-title {
+    @media (max-width: 1000px) {
+      .title-line.statement {
         font-size: 34px;
       }
 
-      .title-line:first-child {
-        white-space: normal;
+      .title-line.scope {
+        font-size: 31px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-container {
+        padding-top: 34px;
+      }
+
+      .main-title {
+        font-size: 32px;
+        line-height: 1.12;
+      }
+
+      .main-title-text {
+        gap: 5px;
+      }
+
+      .title-line.statement {
+        max-width: 340px;
+        font-size: 28px;
+      }
+
+      .title-line.scope {
+        max-width: 340px;
+        font-size: 25px;
+      }
+
+      .authors {
+        font-size: 16px;
+      }
+
+      .affiliation {
+        font-size: 14px;
       }
 
       .release-note {
-        font-size: 18px;
+        font-size: 15px;
+      }
+
+      .links {
+        max-width: 340px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+      }
+
+      .stat-value {
+        font-size: 21px;
       }
 
       .video-section {
-        padding: 0 20px;
+        margin-top: 52px;
+        padding: 44px 20px 48px;
       }
 
       .video-grid {
@@ -417,7 +619,7 @@
       }
 
       .visit-card {
-        border-radius: 18px;
+        border-radius: 8px;
         align-items: flex-start;
       }
 
@@ -429,6 +631,22 @@
         max-width: min(230px, 62vw);
       }
     }
+
+    @media (max-width: 440px) {
+      .title-line.statement {
+        max-width: 300px;
+        font-size: 24px;
+      }
+
+      .title-line.scope {
+        max-width: 300px;
+        font-size: 22px;
+      }
+
+      .link-btn {
+        width: min(100%, 260px);
+      }
+    }
   </style>
 </head>
 
@@ -436,20 +654,18 @@
   <div class="hero-container">
     <h1 class="main-title">
       <span class="main-title-text">
-        <span class="title-line"><span class="blue-word">BLUE</span>: Toward <span class="letter-b">B</span>etter <span class="letter-l">L</span>anguage <span class="letter-u">U</span>se in <span class="letter-e">E</span>fficient</span>
-        <span class="title-line">Vision-Language-Action Models for Autonomous Driving</span>
+        <span class="title-line statement"><span class="blue-word">BLUE</span>: Toward <span class="letter-b">B</span>etter <span class="letter-l">L</span>anguage <span class="letter-u">U</span>se in <span class="letter-e">E</span>fficient</span>
+        <span class="title-line scope">Vision-Language-Action Models for Autonomous Driving</span>
       </span>
     </h1>
 
-    <div class="authors" aria-label="Authors">
-      <span>George Ling</span>
-      <span>,</span>
-      <span>Lijin Yang</span>
-      <span>,</span>
-      <span>Hao Yang</span>
-      <span>,</span>
-      <a href="https://dedekinds.github.io/" target="_blank" rel="noopener">Zhongzhan Huang</a><sup>*</sup>
-    </div>
+    <p class="authors" aria-label="Authors">
+      <span>George Ling</span>,
+      <span>Lijin Yang</span>,
+      <span>Hao Yang</span>,
+      <a href="https://dedekinds.github.io/" target="_blank" rel="noopener">Zhongzhan Huang<sup>*</sup></a>
+    </p>
+    <p class="affiliation">Bosch Research</p>
     <p class="author-note">* Corresponding author</p>
 
     <div class="links">
@@ -490,6 +706,24 @@
     </div>
 
     <p class="release-note">Code, data, logs, and checkpoints will be fully released.</p>
+    <div class="hero-stats" aria-label="Key BLUE results">
+      <div class="stat-item">
+        <span class="stat-value">76.2%</span>
+        <span class="stat-label">Bench2Drive SR</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">36</span>
+        <span class="stat-label">Longest6 v2 DS</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">2.54x</span>
+        <span class="stat-label">Inference speedup</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">0.11M</span>
+        <span class="stat-label">Trainable Param.</span>
+      </div>
+    </div>
   </div>
 
   <div class="video-section">
@@ -533,11 +767,11 @@
           <div class="compare-row">
             <div class="video-card">
               <video src="video/simlingo/route_200_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
-              <div class="video-title">Backbone · SimLingo</div>
+              <div class="video-title">Backbone - SimLingo</div>
             </div>
             <div class="video-card">
               <video src="video/blue/route_200_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
-              <div class="video-title">Ours · BLUE</div>
+              <div class="video-title">Ours - BLUE</div>
             </div>
           </div>
         </div>
@@ -547,11 +781,11 @@
           <div class="compare-row">
             <div class="video-card">
               <video src="video/simlingo/route_91_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
-              <div class="video-title">Backbone · SimLingo</div>
+              <div class="video-title">Backbone - SimLingo</div>
             </div>
             <div class="video-card">
               <video src="video/blue/route_91_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
-              <div class="video-title">Ours · BLUE</div>
+              <div class="video-title">Ours - BLUE</div>
             </div>
           </div>
         </div>
@@ -561,11 +795,11 @@
           <div class="compare-row">
             <div class="video-card">
               <video src="video/simlingo/route_215_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
-              <div class="video-title">Backbone · SimLingo</div>
+              <div class="video-title">Backbone - SimLingo</div>
             </div>
             <div class="video-card">
               <video src="video/blue/route_215_chase_topdown_info.mp4" autoplay muted playsinline controls preload="metadata"></video>
-              <div class="video-title">Ours · BLUE</div>
+              <div class="video-title">Ours - BLUE</div>
             </div>
           </div>
         </div>
@@ -576,7 +810,7 @@
   <div class="container" id="abstract">
     <h2>Abstract</h2>
     <p class="caption">
-      We present BLUE, a minimal method for better language use in vision-language-action (VLA) models for autonomous driving (AD). Through extensive analysis, we reveal that language matters on only a small fraction of routes, but on those routes it can greatly improve or degrade performance. Generating language at every frame is therefore inefficient, since most computation is spent on frames that do not benefit from language. We further show that pretrained VLA hidden states potentially already encode whether language will benefit a given frame, even though scene complexity and kinematic features alone struggle to predict this. Based on this finding, BLUE trains a lightweight gate on frozen VLA hidden states to decide per frame whether to activate language generation or predict actions directly, without modifying the backbone or requiring additional human annotation. With just a 0.11M-parameter gate, BLUE sets a new state of the art on both benchmarks, achieving 76.2% success rate on Bench2Drive and 36 driving score on Longest6 v2, while delivering 2.54× inference speedup and 8.9% success rate improvement over the backbone. BLUE provides a practical path toward efficient language-augmented AD, showing that VLA models can retain the benefits of language at a fraction of the cost.
+      We present BLUE, a minimal method for better language use in vision-language-action (VLA) models for autonomous driving (AD). Through extensive analysis, we reveal that language matters on only a small fraction of routes, but on those routes it can greatly improve or degrade performance. Generating language at every frame is therefore inefficient, since most computation is spent on frames that do not benefit from language. We further show that pretrained VLA hidden states potentially already encode whether language will benefit a given frame, even though scene complexity and kinematic features alone struggle to predict this. Based on this finding, BLUE trains a lightweight gate on frozen VLA hidden states to decide per frame whether to activate language generation or predict actions directly, without modifying the backbone or requiring additional human annotation. With just a 0.11M-parameter gate, BLUE sets a new state of the art on both benchmarks, achieving 76.2% success rate on Bench2Drive and 36 driving score on Longest6 v2, while delivering 2.54x inference speedup and 8.9% success rate improvement over the backbone. BLUE provides a practical path toward efficient language-augmented AD, showing that VLA models can retain the benefits of language at a fraction of the cost.
     </p>
   </div>
 
